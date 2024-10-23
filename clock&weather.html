@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Clock and Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #clock {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    #date {
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live Clock -->
+  <div id="clock"></div>
+  
+  <!-- Live Calendar (Date) -->
+  <div id="date"></div>
+
+  <script>
+    // Function to update the clock
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Function to update the calendar
+    function updateCalendar() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString(undefined, options);
+      document.getElementById('date').textContent = formattedDate;
+    }
+
+    // Initialize the clock and calendar on load
+    setInterval(updateClock, 1000); // Update the clock every second
+    updateClock();  // Initial call for clock
+    updateCalendar();  // Set initial date on load
+  </script>
+
+</body>
+</html>
